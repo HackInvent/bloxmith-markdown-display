@@ -49,7 +49,7 @@ class MarkdownDisplayBlock(BlockDefinition):
         log = (
             f"[markdown-display] {node_id}: {len(accumulated_message)} caractere(s) Markdown recu(s)."
             if accumulated_message
-            else f"[markdown-display] {node_id}: aucune entree Markdown recue."
+            else f"[markdown-display] {node_id}: no Markdown input received."
         )
         return BlockRuntimeResult(
             status="success",
@@ -105,7 +105,7 @@ class MarkdownDisplayBlock(BlockDefinition):
             template=(
                 template
                 .replace("{{ display_source }}", escape(self._display_source(node=node, payload=payload)))
-                .replace("{{ markdown_source }}", escape(str(markdown_source or "Aucune sortie disponible pour l'instant.")))
+                .replace("{{ markdown_source }}", escape(str(markdown_source or "No output available yet.")))
             ),
             node={**node, "type": self.kind, "kind": self.kind},
             payload=payload,
@@ -218,7 +218,7 @@ class MarkdownDisplayBlock(BlockDefinition):
         if isinstance(inputs, list) and inputs:
             return [
                 {
-                    "label": str(item.get("label") or "Entrée reçue"),
+                    "label": str(item.get("label") or "Received input"),
                     "target_label": str(item.get("target_label") or item.get("targetLabel") or node.get("title") or ""),
                     "content": str(item.get("content") or ""),
                 }
@@ -239,9 +239,9 @@ class MarkdownDisplayBlock(BlockDefinition):
         """Return the modal summary sentence for the resolved Markdown items."""
 
         if not items:
-            return "Aucun contenu Markdown reçu pour ce bloc."
+            return "No Markdown content received for this block."
         suffix = "s" if len(items) > 1 else ""
-        return f"{len(items)} contenu{suffix} Markdown reçu{suffix}."
+        return f"{len(items)} Markdown content{suffix} received."
 
     def _render_modal_items(self, items: list[dict[str, str]]) -> str:
         """Render Markdown output cards for the modal body."""
