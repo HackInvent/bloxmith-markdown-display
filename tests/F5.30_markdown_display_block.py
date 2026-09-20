@@ -7,7 +7,7 @@
 # Created Date: 2026-06-22
 # -----------------------------------------------------------------------------
 
-"""F5.30 - Bloc Visualiser md.
+"""F5.30 - Markdown display block.
 
 The test connects a text source containing Markdown to `markdown_display` and
 checks that the block preserves raw Markdown while rendering a safe HTML subset
@@ -58,7 +58,7 @@ def markdown_display_node() -> dict:
 def main() -> None:
     markdown = "# Rapport\n\n- Point **important**\n- `code`\n\n<script>alert('x')</script>\n" + ("\nTexte long." * 80)
     with isolated_server() as server:
-        # Les surfaces sont des assets de release : le bundled kind n'en sert aucun.
+        # Surfaces are release assets: a bundled kind serves none of them.
         model = install_test_package(server, "markdown_display")
         key = quote(release_key(model), safe="")
         served = lambda payload, suffix: next(
