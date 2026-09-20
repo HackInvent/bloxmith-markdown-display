@@ -29,6 +29,8 @@ from ui_smoke_common import (
     text_node,
     wait_for_run_terminal,
 )
+from urllib.parse import quote
+from block_test_packages import install_test_package, release_key, surface_payload
 
 
 def markdown_display_node() -> dict:
@@ -56,6 +58,11 @@ def markdown_display_node() -> dict:
 def main() -> None:
     markdown = "# Rapport\n\n- Point **important**\n- `code`\n\n<script>alert('x')</script>\n" + ("\nTexte long." * 80)
     with isolated_server() as server:
+        # Les surfaces sont des assets de release : le bundled kind n'en sert aucun.
+        model = install_test_package(server, "markdown_display")
+        key = quote(release_key(model), safe="")
+        served = lambda payload, suffix: next(
+            asset["path"] for asset in payload["assets"] if asset["path"].endswith(suffix))
         catalog = http_json(server.base_url, "/api/blocks")
         kinds = {block.get("kind") for block in catalog.get("blocks", [])}
         expect("markdown_display" in kinds, "markdown_display must be discovered in the block catalog.")
@@ -99,7 +106,6 @@ def main() -> None:
         expect("<script>" not in modal_html and "&lt;script&gt;" in modal_html, "Modal must escape raw HTML.")
         expect('data-block-runtime-refresh="autonomous"' in modal_html, "Modal must opt into autonomous runtime refresh.")
         expect("data-block-apply" in modal_html, "Modal must expose generic Apply for title edits.")
-        expect(("css", "assets/css/block_modal.css") in modal_assets, "Markdown modal CSS asset must be declared.")
 
         document = graph_payload(
             "F5 Markdown Display",

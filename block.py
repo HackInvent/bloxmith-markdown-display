@@ -32,20 +32,6 @@ class MarkdownDisplayBlock(BlockDefinition):
 
     kind = "markdown_display"
 
-    def ui_assets(self, surface: str = "modal") -> list[dict[str, str]]:
-        """Return Markdown Display-owned assets for the requested UI surface.
-
-        Args:
-            surface: UI surface requesting block assets.
-        """
-
-        if surface == "modal":
-            return [
-                {"kind": "css", "path": "assets/css/block_modal.css"},
-                {"kind": "js", "path": "assets/js/block_modal.js"},
-            ]
-        return []
-
     def execute_runtime(self, context: Any) -> BlockRuntimeResult:
         """Capture the received Markdown payload as this sink block result.
 
