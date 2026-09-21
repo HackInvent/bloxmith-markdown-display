@@ -5,7 +5,11 @@
     "1.0.9"
   ],
   "tested_with_bloxsmith": "1.0.9",
-  "title": "Visualiser md",
+  "title": "Markdown viewer",
+  "locales": {
+    "en": "locales/en.json",
+    "fr": "locales/fr.json"
+  },
   "ports": {
     "inputs": [
       {

@@ -1,26 +1,26 @@
 <div class="modal-panel display-output-modal markdown-display-modal" role="dialog" aria-modal="true" aria-labelledby="markdownDisplayBlockModalTitle" data-markdown-display-modal-root data-block-runtime-refresh="autonomous">
   <div class="modal-header">
     <div>
-      <span class="panel-kicker">Rendu Markdown</span>
+      <span class="panel-kicker" data-i18n="block.markdown_display.modal_kicker">Markdown rendering</span>
       <h2 id="markdownDisplayBlockModalTitle">{{ title }}</h2>
     </div>
     <div class="modal-actions">
-      <button class="ghost-btn" data-block-modal-copy="[data-block-modal-copy-source]" type="button">Copier md</button>
-      <button class="ghost-btn" data-close-block-modal type="button">Close</button>
+      <button class="ghost-btn" data-block-modal-copy="[data-block-modal-copy-source]" type="button" data-i18n="block.markdown_display.copy_markdown">Copy md</button>
+      <button class="ghost-btn" data-close-block-modal type="button" data-i18n="ui.block_kit.close">Close</button>
     </div>
   </div>
   <div class="display-output-modal-body">
     <section class="ports-editor-section">
-      <div class="ports-editor-header"><span class="group-label">Identity</span></div>
+      <div class="ports-editor-header"><span class="group-label" data-i18n="ui.block_kit.identity">Identity</span></div>
       <div class="field-group">
-        <label>Block name</label>
+        <label data-i18n="ui.block_kit.block_name">Block name</label>
         <input data-block-title-field type="text" autocomplete="off" value="{{ title }}" />
       </div>
       <div class="inspector-actions">
-        <button class="solid-btn" data-block-apply type="button" disabled>Apply</button>
+        <button class="solid-btn" data-block-apply type="button" disabled data-i18n="ui.block_kit.apply">Apply</button>
       </div>
     </section>
-    <div class="display-output-summary">{{ summary }}</div>
+    <div class="display-output-summary"{{ summary_marker }}>{{ summary }}</div>
     <div class="display-output-list">{{ items_html }}</div>
     <textarea hidden readonly data-block-modal-copy-source>{{ clipboard_text }}</textarea>
   </div>

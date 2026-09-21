@@ -1,0 +1,16 @@
+{
+  "block.markdown_display.model.title": "Visualiser md",
+  "block.markdown_display.pill": "Markdown",
+  "block.markdown_display.modal_kicker": "Rendu Markdown",
+  "block.markdown_display.copy_markdown": "Copier md",
+  "block.markdown_display.sources_label": "Sources",
+  "block.markdown_display.captured_label": "Markdown capturé",
+  "block.markdown_display.renderer_hint": "Le rendu Markdown échappe le HTML brut et affiche un sous-ensemble sûr de Markdown.",
+  "block.markdown_display.no_content": "Aucun contenu Markdown reçu pour ce bloc.",
+  "block.markdown_display.contents_summary.one": "{count} contenu Markdown reçu.",
+  "block.markdown_display.contents_summary.other": "{count} contenus Markdown reçus.",
+  "block.markdown_display.received_input": "Entrée reçue",
+  "block.markdown_display.output_received": "Sortie reçue",
+  "block.markdown_display.source_index": "Source {index}",
+  "block.markdown_display.run_to_see": "Lance le workflow ou charge un run pour voir le rendu Markdown."
+}

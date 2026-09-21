@@ -1,0 +1,16 @@
+{
+  "block.markdown_display.model.title": "Markdown viewer",
+  "block.markdown_display.pill": "Markdown",
+  "block.markdown_display.modal_kicker": "Markdown rendering",
+  "block.markdown_display.copy_markdown": "Copy md",
+  "block.markdown_display.sources_label": "Sources",
+  "block.markdown_display.captured_label": "Captured Markdown",
+  "block.markdown_display.renderer_hint": "The Markdown renderer escapes raw HTML and displays a safe subset of Markdown.",
+  "block.markdown_display.no_content": "No Markdown content received for this block.",
+  "block.markdown_display.contents_summary.one": "{count} Markdown content received.",
+  "block.markdown_display.contents_summary.other": "{count} Markdown contents received.",
+  "block.markdown_display.received_input": "Received input",
+  "block.markdown_display.output_received": "Output received",
+  "block.markdown_display.source_index": "Source {index}",
+  "block.markdown_display.run_to_see": "Run the workflow or load a run to see the Markdown rendering."
+}
