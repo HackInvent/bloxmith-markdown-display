@@ -238,6 +238,27 @@ class MarkdownDisplayBlock(BlockDefinition):
                      "target_label": str(node.get("title") or ""), "content": output}]
         return []
 
+    def _item_label(self, item: dict[str, str], index: int) -> str:
+        """Return the header label of one item, translated only when the block authored it.
+
+        A label the runtime delivered is content and stays as received; a default one
+        is a block text and follows the active language.
+
+        Args:
+            item: Resolved item carrying its content and, for a default label, its key.
+            index: Position of the item in the modal, used by the generated label.
+        """
+
+        if item.get("label_key"):
+            return self.translate(str(item["label_key"]), fallback=str(item.get("label") or ""))
+        if item.get("label"):
+            return str(item["label"])
+        return self.translate(
+            "block.markdown_display.source_index",
+            {"index": index + 1},
+            fallback=f"Source {index + 1}",
+        )
+
     def _summary_marker(self, items: list[dict[str, str]]) -> str:
         """Return the i18n marker of the summary sentence, which changes with the item count.
 
@@ -257,19 +278,27 @@ class MarkdownDisplayBlock(BlockDefinition):
         """Return the modal summary sentence for the resolved Markdown items."""
 
         if not items:
-            return "No Markdown content received for this block."
+            return self.translate(
+                "block.markdown_display.no_content",
+                fallback="No Markdown content received for this block.",
+            )
         suffix = "s" if len(items) > 1 else ""
-        return f"{len(items)} Markdown content{suffix} received."
+        return self.translate(
+            "block.markdown_display.contents_summary",
+            {"count": len(items)},
+            fallback=f"{len(items)} Markdown content{suffix} received.",
+        )
 
     def _render_modal_items(self, items: list[dict[str, str]]) -> str:
         """Render Markdown output cards for the modal body."""
 
         if not items:
-            return ('<div class="ports-editor-empty" data-i18n="block.markdown_display.run_to_see">'
-                    "Run the workflow or load a run to see the Markdown rendering.</div>")
+            empty = self.translate("block.markdown_display.run_to_see", fallback="Run the workflow or load a run to see the Markdown rendering.")
+            return (f'<div class="ports-editor-empty" data-i18n="block.markdown_display.run_to_see">'
+                    f"{escape(empty)}</div>")
         cards: list[str] = []
         for index, item in enumerate(items):
-            label = escape(item.get("label") or f"Source {index + 1}")
+            label = escape(self._item_label(item, index))
             # A label the runtime provided is content; a default one is a block text.
             if item.get("label_key"):
                 marker = f' data-i18n="{item["label_key"]}"'
