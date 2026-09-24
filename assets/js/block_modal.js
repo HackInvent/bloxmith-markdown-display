@@ -1,3 +1,5 @@
+import { withProperties } from "./properties.js";
+
 
 
 /**
@@ -6,8 +8,13 @@
  *
  * @param {HTMLElement} root - Mounted Markdown Display modal root.
  */
-export function mount(root) {
+function mountOwned(root) {
   if (root instanceof HTMLElement) {
     root.dataset.markdownDisplayModalMounted = "true";
   }
+}
+
+/** Keep the block behavior and add properties-only accessibility. */
+export function mount(root, ...args) {
+  return withProperties(mountOwned).call(this, root, ...args);
 }
