@@ -10,9 +10,6 @@ Verified BloxSmith versions: **1.0.9** (bundled-block tests; see [test evidence]
 
 [![MARKDOWN — Displays incoming Markdown as formatted text.](media/thumbnail.webp)](media/cover.png)
 
-*Concept illustration. [Artwork and generation prompt](media/README.md).*
-
-
 Display Markdown from another block: reports, Codex responses, documentation or other structured text, without transforming the rest of the workflow. The current UI calls this block **Visualiser md**.
 
 ## When to use it
